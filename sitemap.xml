@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.maxbill.cn/image/index.html</loc>
+    
+    <lastmod>2020-02-09T14:57:11.929Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.maxbill.cn/video/index.html</loc>
+    
+    <lastmod>2020-02-09T14:56:40.872Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.maxbill.cn/audio/index.html</loc>
+    
+    <lastmod>2020-02-09T14:33:38.023Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.maxbill.cn/404.html</loc>
     
-    <lastmod>2020-02-09T12:23:37.052Z</lastmod>
+    <lastmod>2020-02-09T13:05:22.853Z</lastmod>
     
   </url>
   
@@ -40,27 +61,6 @@
     <loc>https://www.maxbill.cn/about/index.html</loc>
     
     <lastmod>2020-02-09T09:40:52.400Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.maxbill.cn/video/index.html</loc>
-    
-    <lastmod>2020-02-09T06:17:32.038Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.maxbill.cn/audio/index.html</loc>
-    
-    <lastmod>2020-02-09T06:17:20.460Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.maxbill.cn/image/index.html</loc>
-    
-    <lastmod>2020-02-09T06:16:53.640Z</lastmod>
     
   </url>
   
