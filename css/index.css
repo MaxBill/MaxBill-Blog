@@ -1919,7 +1919,7 @@ blockquote footer cite:before {
 }
 #vcomment textarea {
   font-size: 0.7rem;
-  background: url("https://gitee.com/MaxBill/MaxBill-Data/raw/master/img/comment_bg.png") 100% 100% no-repeat;
+  background: url("https://cdn.maxbill.cn/blog/img/comment-bg.png") 100% 100% no-repeat;
 }
 #vcomment .info {
   display: none;
