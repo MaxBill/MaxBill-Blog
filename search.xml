@@ -47,9 +47,9 @@
       
         <tags>
             
-            <tag> 分布式文件系统 </tag>
-            
             <tag> FastDFS </tag>
+            
+            <tag> 分布式文件系统 </tag>
             
             <tag> 高可用 </tag>
             
@@ -76,9 +76,9 @@
       
         <tags>
             
-            <tag> 分布式文件系统 </tag>
-            
             <tag> FastDFS </tag>
+            
+            <tag> 分布式文件系统 </tag>
             
             <tag> 高可用 </tag>
             
@@ -142,11 +142,11 @@
             
             <tag> Kubernetes </tag>
             
-            <tag> 容器化 </tag>
-            
             <tag> Haproxy </tag>
             
             <tag> Keepalived </tag>
+            
+            <tag> 容器化 </tag>
             
         </tags>
       
@@ -175,9 +175,9 @@
             
             <tag> Kubernetes </tag>
             
-            <tag> Docker </tag>
-            
             <tag> 容器化 </tag>
+            
+            <tag> Docker </tag>
             
             <tag> Harbor </tag>
             
@@ -212,13 +212,13 @@
             
             <tag> Kubernetes </tag>
             
+            <tag> 容器化 </tag>
+            
             <tag> Docker </tag>
             
             <tag> Docker-Compose </tag>
             
             <tag> NTP </tag>
-            
-            <tag> 容器化 </tag>
             
         </tags>
       
@@ -280,9 +280,9 @@
             
             <tag> SpringBoot </tag>
             
-            <tag> Idea </tag>
-            
             <tag> 微服务 </tag>
+            
+            <tag> Idea </tag>
             
             <tag> devtools </tag>
             
@@ -373,11 +373,11 @@
       
         <tags>
             
+            <tag> 分布式文件系统 </tag>
+            
             <tag> Hadoop </tag>
             
             <tag> HDFS </tag>
-            
-            <tag> 分布式文件系统 </tag>
             
             <tag> 大数据 </tag>
             
@@ -404,11 +404,11 @@
       
         <tags>
             
+            <tag> 分布式文件系统 </tag>
+            
             <tag> Hadoop </tag>
             
             <tag> HDFS </tag>
-            
-            <tag> 分布式文件系统 </tag>
             
             <tag> 大数据 </tag>
             
@@ -697,9 +697,9 @@
             
             <tag> SpringBoot </tag>
             
-            <tag> 微服务 </tag>
-            
             <tag> Jpa </tag>
+            
+            <tag> 微服务 </tag>
             
         </tags>
       
@@ -728,9 +728,9 @@
             
             <tag> SpringBoot </tag>
             
-            <tag> Idea </tag>
-            
             <tag> 微服务 </tag>
+            
+            <tag> Idea </tag>
             
         </tags>
       
@@ -759,9 +759,9 @@
             
             <tag> SpringBoot </tag>
             
-            <tag> Idea </tag>
-            
             <tag> 微服务 </tag>
+            
+            <tag> Idea </tag>
             
         </tags>
       
