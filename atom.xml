@@ -149,11 +149,11 @@
     
       <category term="Kubernetes" scheme="https://www.maxbill.cn/marks/Kubernetes/"/>
     
+      <category term="容器化" scheme="https://www.maxbill.cn/marks/%E5%AE%B9%E5%99%A8%E5%8C%96/"/>
+    
       <category term="Haproxy" scheme="https://www.maxbill.cn/marks/Haproxy/"/>
     
       <category term="Keepalived" scheme="https://www.maxbill.cn/marks/Keepalived/"/>
-    
-      <category term="容器化" scheme="https://www.maxbill.cn/marks/%E5%AE%B9%E5%99%A8%E5%8C%96/"/>
     
   </entry>
   
@@ -180,11 +180,11 @@
     
       <category term="Kubernetes" scheme="https://www.maxbill.cn/marks/Kubernetes/"/>
     
-      <category term="容器化" scheme="https://www.maxbill.cn/marks/%E5%AE%B9%E5%99%A8%E5%8C%96/"/>
-    
       <category term="Docker" scheme="https://www.maxbill.cn/marks/Docker/"/>
     
       <category term="Harbor" scheme="https://www.maxbill.cn/marks/Harbor/"/>
+    
+      <category term="容器化" scheme="https://www.maxbill.cn/marks/%E5%AE%B9%E5%99%A8%E5%8C%96/"/>
     
       <category term="容器编排" scheme="https://www.maxbill.cn/marks/%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/"/>
     
@@ -215,9 +215,9 @@
     
       <category term="Kubernetes" scheme="https://www.maxbill.cn/marks/Kubernetes/"/>
     
-      <category term="容器化" scheme="https://www.maxbill.cn/marks/%E5%AE%B9%E5%99%A8%E5%8C%96/"/>
-    
       <category term="Docker" scheme="https://www.maxbill.cn/marks/Docker/"/>
+    
+      <category term="容器化" scheme="https://www.maxbill.cn/marks/%E5%AE%B9%E5%99%A8%E5%8C%96/"/>
     
       <category term="Docker-Compose" scheme="https://www.maxbill.cn/marks/Docker-Compose/"/>
     
@@ -279,9 +279,9 @@
     
       <category term="SpringBoot" scheme="https://www.maxbill.cn/marks/SpringBoot/"/>
     
-      <category term="微服务" scheme="https://www.maxbill.cn/marks/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
       <category term="Idea" scheme="https://www.maxbill.cn/marks/Idea/"/>
+    
+      <category term="微服务" scheme="https://www.maxbill.cn/marks/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
       <category term="devtools" scheme="https://www.maxbill.cn/marks/devtools/"/>
     
@@ -670,9 +670,9 @@
     
       <category term="SpringBoot" scheme="https://www.maxbill.cn/marks/SpringBoot/"/>
     
-      <category term="Jpa" scheme="https://www.maxbill.cn/marks/Jpa/"/>
-    
       <category term="微服务" scheme="https://www.maxbill.cn/marks/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+      <category term="Jpa" scheme="https://www.maxbill.cn/marks/Jpa/"/>
     
   </entry>
   
@@ -699,9 +699,9 @@
     
       <category term="SpringBoot" scheme="https://www.maxbill.cn/marks/SpringBoot/"/>
     
-      <category term="微服务" scheme="https://www.maxbill.cn/marks/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
       <category term="Idea" scheme="https://www.maxbill.cn/marks/Idea/"/>
+    
+      <category term="微服务" scheme="https://www.maxbill.cn/marks/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
   </entry>
   
@@ -728,9 +728,9 @@
     
       <category term="SpringBoot" scheme="https://www.maxbill.cn/marks/SpringBoot/"/>
     
-      <category term="微服务" scheme="https://www.maxbill.cn/marks/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
       <category term="Idea" scheme="https://www.maxbill.cn/marks/Idea/"/>
+    
+      <category term="微服务" scheme="https://www.maxbill.cn/marks/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
   </entry>
   

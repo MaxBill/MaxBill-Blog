@@ -142,11 +142,11 @@
             
             <tag> Kubernetes </tag>
             
+            <tag> 容器化 </tag>
+            
             <tag> Haproxy </tag>
             
             <tag> Keepalived </tag>
-            
-            <tag> 容器化 </tag>
             
         </tags>
       
@@ -175,11 +175,11 @@
             
             <tag> Kubernetes </tag>
             
-            <tag> 容器化 </tag>
-            
             <tag> Docker </tag>
             
             <tag> Harbor </tag>
+            
+            <tag> 容器化 </tag>
             
             <tag> 容器编排 </tag>
             
@@ -212,9 +212,9 @@
             
             <tag> Kubernetes </tag>
             
-            <tag> 容器化 </tag>
-            
             <tag> Docker </tag>
+            
+            <tag> 容器化 </tag>
             
             <tag> Docker-Compose </tag>
             
@@ -280,9 +280,9 @@
             
             <tag> SpringBoot </tag>
             
-            <tag> 微服务 </tag>
-            
             <tag> Idea </tag>
+            
+            <tag> 微服务 </tag>
             
             <tag> devtools </tag>
             
@@ -697,9 +697,9 @@
             
             <tag> SpringBoot </tag>
             
-            <tag> Jpa </tag>
-            
             <tag> 微服务 </tag>
+            
+            <tag> Jpa </tag>
             
         </tags>
       
@@ -728,9 +728,9 @@
             
             <tag> SpringBoot </tag>
             
-            <tag> 微服务 </tag>
-            
             <tag> Idea </tag>
+            
+            <tag> 微服务 </tag>
             
         </tags>
       
@@ -759,9 +759,9 @@
             
             <tag> SpringBoot </tag>
             
-            <tag> 微服务 </tag>
-            
             <tag> Idea </tag>
+            
+            <tag> 微服务 </tag>
             
         </tags>
       
