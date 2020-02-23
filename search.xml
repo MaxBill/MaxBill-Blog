@@ -177,9 +177,9 @@
             
             <tag> Docker </tag>
             
-            <tag> Harbor </tag>
-            
             <tag> 容器化 </tag>
+            
+            <tag> Harbor </tag>
             
             <tag> 容器编排 </tag>
             
@@ -214,11 +214,11 @@
             
             <tag> Docker </tag>
             
-            <tag> 容器化 </tag>
-            
             <tag> Docker-Compose </tag>
             
             <tag> NTP </tag>
+            
+            <tag> 容器化 </tag>
             
         </tags>
       
