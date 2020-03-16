@@ -47,9 +47,9 @@
       
         <tags>
             
-            <tag> FastDFS </tag>
-            
             <tag> 分布式文件系统 </tag>
+            
+            <tag> FastDFS </tag>
             
             <tag> 高可用 </tag>
             
@@ -76,9 +76,9 @@
       
         <tags>
             
-            <tag> FastDFS </tag>
-            
             <tag> 分布式文件系统 </tag>
+            
+            <tag> FastDFS </tag>
             
             <tag> 高可用 </tag>
             
@@ -631,11 +631,11 @@
       
         <tags>
             
-            <tag> 分布式文件系统 </tag>
-            
             <tag> Hadoop </tag>
             
             <tag> HDFS </tag>
+            
+            <tag> 分布式文件系统 </tag>
             
             <tag> 大数据 </tag>
             
@@ -662,11 +662,11 @@
       
         <tags>
             
-            <tag> 分布式文件系统 </tag>
-            
             <tag> Hadoop </tag>
             
             <tag> HDFS </tag>
+            
+            <tag> 分布式文件系统 </tag>
             
             <tag> 大数据 </tag>
             
