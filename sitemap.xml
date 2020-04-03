@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.maxbill.cn/about/index.html</loc>
+    
+    <lastmod>2020-04-03T14:20:54.709Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.maxbill.cn/speak/index.html</loc>
     
     <lastmod>2020-04-03T13:13:59.749Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://www.maxbill.cn/music/index.html</loc>
     
     <lastmod>2020-04-03T13:09:30.740Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.maxbill.cn/about/index.html</loc>
-    
-    <lastmod>2020-04-03T13:06:56.461Z</lastmod>
     
   </url>
   
