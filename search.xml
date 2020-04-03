@@ -177,9 +177,9 @@
             
             <tag> Docker </tag>
             
-            <tag> 容器化 </tag>
-            
             <tag> Harbor </tag>
+            
+            <tag> 容器化 </tag>
             
             <tag> 容器编排 </tag>
             
@@ -214,11 +214,11 @@
             
             <tag> Docker </tag>
             
+            <tag> 容器化 </tag>
+            
             <tag> Docker-Compose </tag>
             
             <tag> NTP </tag>
-            
-            <tag> 容器化 </tag>
             
         </tags>
       
@@ -278,9 +278,9 @@
             
             <tag> Docker </tag>
             
-            <tag> 容器化 </tag>
-            
             <tag> Harbor </tag>
+            
+            <tag> 容器化 </tag>
             
             <tag> docker-registry </tag>
             
@@ -569,11 +569,11 @@
             
             <tag> Hadoop </tag>
             
+            <tag> Hdfs </tag>
+            
             <tag> 大数据 </tag>
             
             <tag> Hue </tag>
-            
-            <tag> Hdfs </tag>
             
             <tag> Yarn </tag>
             
@@ -635,7 +635,7 @@
             
             <tag> Hadoop </tag>
             
-            <tag> HDFS </tag>
+            <tag> Hdfs </tag>
             
             <tag> 大数据 </tag>
             
@@ -666,7 +666,7 @@
             
             <tag> Hadoop </tag>
             
-            <tag> HDFS </tag>
+            <tag> Hdfs </tag>
             
             <tag> 大数据 </tag>
             
