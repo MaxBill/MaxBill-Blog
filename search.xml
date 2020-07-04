@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Java多线程之volatile关键字</title>
+      <link href="/3332402747.html"/>
+      <url>/3332402747.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>在java多线程并发编程中，为了解决多线程并发的问题，在语言内部引入了同步块和volatile关键字机制。volatile是java的一个类型修饰符，它被设计用来修饰被不同线程访问和修改的变量。被volatile关键字修饰的变量，线程在每次使用变量的时候，都会读取变量修改后的最新的值。</p><h2 id="volatile关键字的作用"><a href="#volatile关键字的作用" class="headerlink" title="volatile关键字的作用"></a>volatile关键字的作用</h2><h3 id="保证线程可见性"><a href="#保证线程可见性" class="headerlink" title="保证线程可见性"></a>保证线程可见性</h3><p>volatile保证线程可见性是指：被volatile修饰的变量在多线程情况下线程能够自动发现volatile变量的最新值。</p><p>为什么多线程之间共同访问的变量的值是相互不可见的？这就需要从JMM开始说起：在java内存模型中，每个线程都会被分配一个线程栈，如果对象是多线程间的共享资源时，当线程访问某一个对象值的时候，首先通过对象的引用找到对应在堆内存的变量的值，然后把堆内存变量的值load到线程栈中，建立一个变量副本，之后线程操作的都是副本变量，当修改完副本变量之后，会将值写回到主内存中。但由于线程栈是线程间相互隔离的，即多线程间不可见，如果有其他线程修改了这个变量，但还未写回到主内存中时，其他线程读取的仍是自己线程栈的副本时，就会出现数据不一致的问题。</p><p>下面我通过编码举个例子：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.maxbill.thread.volatiles;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VolatileTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Boolean val = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// private static volatile Boolean val = true;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">for</span> (; ; ) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!val) <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"VAL当前的值 : "</span> + val);</span><br><span class="line">        &#125;).start();</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        val = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>上面这个程序是启动一个线程，当主线程修把变量val改为false后子线程会结束，否则子线程一直运行不退出，运行结果是：虽然主线程修改了值但是子线程无法感知到，还是一直在运行。解决方案就是给val变量加上volatile关键字，保证主线程修改了val后，子线程能读取到新值。</p><h3 id="禁止指令重排序"><a href="#禁止指令重排序" class="headerlink" title="禁止指令重排序"></a>禁止指令重排序</h3><p>volatile禁止指令重排序是指：volatile通过JVM的内存屏障，让多条指令顺序执行。</p><p>为什么cpu执行程序会对指令重新排序？因为在执行程序时为了提高性能，编译器和处理器常常会对指令做重排序。虽然代码顺序是有先后顺序，但真正执行时却不一定按照代码顺序执行。这样在多线程下就可能存在问题。另外指令重排序在实际下发生情况比较少，由于Java、CPU和内存之间都有一套严格的指令重排序规则，具体可参照JSR和JVM相关资料。重排序分三种类型：<br>1.编译器优化的重排序：编译器在不改变单线程程序语义的前提下，重新安排语句的执行顺序。<br>2.指令级并行的重排序：现代处理器采用了指令级并行技术来将多条指令重叠执行。如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序。<br>3.内存系统的重排序：由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上去可能是在乱序执行。</p><h2 id="volatile关键字的底层"><a href="#volatile关键字的底层" class="headerlink" title="volatile关键字的底层"></a>volatile关键字的底层</h2><p>volatile关键字可以保证执行执行的可见性和顺序性，那它底层的实现是如何的？通过查看底层汇编代码，是通过给变量加上lock ，通过底层硬件的内存屏障实现指令的顺序执行，而且lock指令还可以强制把写缓冲区/高速缓存中的数据写回主内存，同时让其他cpu中对应的缓存行无效（MESI缓存一致性协议），这就保证了线程间数据的可见性。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#ifdef AMD64</span><br><span class="line">    __asm__ volatile (&quot;lock; addl $0,0(%%rsp)&quot; : : : &quot;cc&quot;, &quot;memory&quot;);</span><br><span class="line">#else</span><br><span class="line">    __asm__ volatile (&quot;lock; addl $0,0(%%esp)&quot; : : : &quot;cc&quot;, &quot;memory&quot;);</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure><h2 id="volatile关键字的误区"><a href="#volatile关键字的误区" class="headerlink" title="volatile关键字的误区"></a>volatile关键字的误区</h2><p>volatile可以保证可见性和顺序性，但是不能保证原子性。即volatile并不能保证一个线程执行时操作该变量是一个原子操作，会被其他线程中断，引起数据不一致。</p><p>原子性是指这个操作是不可中断，要么全部执行成功要么全部执行失败，就算在多个线程一起执行的时候，一个操作一旦开始，就不会被其他线程所干扰。volatile并不能保证原子操作，例如i++操作时，分为Load、Increment、Store、Memory Barriers四个步骤，即装载、新增、存储和内存屏障四个步骤，第四步则是保证jvm让最新的变量值在所有线程可见，但从Load、Increment、到Store是不安全的，中间如果其他的CPU线程修改值将会存在问题。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学多线程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> 多线程 </tag>
+            
+            <tag> volatile </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>使用Hexo写第一篇文章</title>
       <link href="/3439513514.html"/>
       <url>/3439513514.html</url>
@@ -177,9 +206,9 @@
             
             <tag> Docker </tag>
             
-            <tag> 容器化 </tag>
-            
             <tag> Harbor </tag>
+            
+            <tag> 容器化 </tag>
             
             <tag> 容器编排 </tag>
             
@@ -214,11 +243,11 @@
             
             <tag> Docker </tag>
             
+            <tag> 容器化 </tag>
+            
             <tag> Docker-Compose </tag>
             
             <tag> NTP </tag>
-            
-            <tag> 容器化 </tag>
             
         </tags>
       
@@ -278,9 +307,9 @@
             
             <tag> Docker </tag>
             
-            <tag> 容器化 </tag>
-            
             <tag> Harbor </tag>
+            
+            <tag> 容器化 </tag>
             
             <tag> docker-registry </tag>
             
@@ -474,9 +503,9 @@
             
             <tag> Hadoop </tag>
             
-            <tag> Hue </tag>
-            
             <tag> 大数据 </tag>
+            
+            <tag> Hue </tag>
             
             <tag> Mysql </tag>
             
@@ -507,9 +536,9 @@
             
             <tag> Hadoop </tag>
             
-            <tag> Hue </tag>
-            
             <tag> 大数据 </tag>
+            
+            <tag> Hue </tag>
             
             <tag> Hive </tag>
             
@@ -538,9 +567,9 @@
             
             <tag> Hadoop </tag>
             
-            <tag> Hue </tag>
-            
             <tag> 大数据 </tag>
+            
+            <tag> Hue </tag>
             
             <tag> MySql </tag>
             
@@ -569,13 +598,13 @@
             
             <tag> Hadoop </tag>
             
-            <tag> Hue </tag>
-            
             <tag> Hdfs </tag>
             
-            <tag> Yarn </tag>
-            
             <tag> 大数据 </tag>
+            
+            <tag> Hue </tag>
+            
+            <tag> Yarn </tag>
             
         </tags>
       
@@ -602,9 +631,9 @@
             
             <tag> Hadoop </tag>
             
-            <tag> Hue </tag>
-            
             <tag> 大数据 </tag>
+            
+            <tag> Hue </tag>
             
             <tag> Maven </tag>
             
