@@ -22,9 +22,9 @@
             
             <tag> Java </tag>
             
-            <tag> 多线程 </tag>
-            
             <tag> volatile </tag>
+            
+            <tag> 多线程 </tag>
             
         </tags>
       
@@ -206,9 +206,9 @@
             
             <tag> Docker </tag>
             
-            <tag> Harbor </tag>
-            
             <tag> 容器化 </tag>
+            
+            <tag> Harbor </tag>
             
             <tag> 容器编排 </tag>
             
@@ -243,11 +243,11 @@
             
             <tag> Docker </tag>
             
-            <tag> 容器化 </tag>
-            
             <tag> Docker-Compose </tag>
             
             <tag> NTP </tag>
+            
+            <tag> 容器化 </tag>
             
         </tags>
       
@@ -307,13 +307,13 @@
             
             <tag> Docker </tag>
             
-            <tag> Harbor </tag>
+            <tag> Docker-Compose </tag>
             
             <tag> 容器化 </tag>
             
-            <tag> docker-registry </tag>
+            <tag> Harbor </tag>
             
-            <tag> docker-compose </tag>
+            <tag> Docker-Registry </tag>
             
         </tags>
       
