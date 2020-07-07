@@ -138,9 +138,9 @@
             
             <tag> Kubernetes </tag>
             
-            <tag> Etcd </tag>
-            
             <tag> 容器化 </tag>
+            
+            <tag> Etcd </tag>
             
         </tags>
       
@@ -204,9 +204,9 @@
             
             <tag> Kubernetes </tag>
             
-            <tag> 容器化 </tag>
-            
             <tag> Docker </tag>
+            
+            <tag> 容器化 </tag>
             
             <tag> Harbor </tag>
             
@@ -241,13 +241,13 @@
             
             <tag> Kubernetes </tag>
             
-            <tag> 容器化 </tag>
-            
             <tag> Docker </tag>
             
             <tag> Docker-Compose </tag>
             
             <tag> NTP </tag>
+            
+            <tag> 容器化 </tag>
             
         </tags>
       
@@ -305,11 +305,11 @@
       
         <tags>
             
-            <tag> 容器化 </tag>
-            
             <tag> Docker </tag>
             
             <tag> Docker-Compose </tag>
+            
+            <tag> 容器化 </tag>
             
             <tag> Harbor </tag>
             
@@ -454,6 +454,37 @@
     
     
     <entry>
+      <title>Java深究之Vector、ArrayList、LinkedList的区别</title>
+      <link href="/3953404786.html"/>
+      <url>/3953404786.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>在java开发中除了上文经常用的对字符串的操作外，还有使用居多的当属集合了。在基础的java学习时，相信很多同学都学习了List、Set、Map这些，他们之间的区别和基本的使用方法也是很了解了，本文是详细的去分析List中Vector、ArrayList、LinkedList之间的区别和底层实现原理以及使用场景。</p><p>首先说下这三者的区别：<br><strong>1.基本区别：</strong>三个类都实现了List接口，都是有序集合，数据是允许重复的；ArrayList 和Vector都是基于数组实现存储的，集合中的元素的位置都是有顺序即连续的；LinkedList是基于双向链表实现存储的<strong>，</strong>集合中的元素的位置是不连续的。<br><strong>2.性能区别：</strong>Vector和ArrayList底层实现原理一致，但是Vector是线程安全的，因此性能比ArrayList差很多；LinkedList相比于集合Vector和ArrayList在插入,修改，删除等操作上速度较快，但是随机访问的性能较差。<br><strong>3.安全区别：</strong>Vector是使用了synchronized同步锁是线程安全的，ArrayList和LinkedList都是线程不安全的。<br><strong>4.原理区别：</strong>ArrayList与Vector都有初始的容量大小，当存储的元素的个数超过了容量时，就需要增加存储空间，Vector默认增长为原来两倍，而ArrayList的增长为原来的1.5倍；ArrayList与Vector都可以设置初始空间大小，Vector还可以设置增长的空间大小，而ArrayList没有提供设置增长空间的方法。</p><p>然后详细分析每一个的原理：</p><p><strong>1.Vector</strong><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/b205a631d7581de379853c361ea68722266.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/44b6026f9612455ec507803dd4325a5e63e.jpg" alt=""><br>从源码可以看出Vector的初始默认空间大小为10，底层使用protected Object[] elementData;存储数据，使用protected int elementCount;存储元素数量，Vector的方法都被synchronized关键字修饰，因此是线程安全的。<br>接下来我们从源码上看下Vector的添加元素时以及初始容量不足时的扩容机制：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/b3213733195ed4bdbaa41c38201b75f59c2.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/576ad4e25f0907e7d48df1ca3232f2da5d5.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/3e71b5831668ee458cf65fe39d60295e7d6.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/85d957d260531c5875ca63e4a567a98f0ea.jpg" alt=""><br>当创建一个Vector容器，向其中添加一个元素是，首先会调用ensureCapacityHelper函数判断容器存储容量，如果容量不足则会调用grow函数扩容，上面我们说的扩展为原来的两倍，其实不是非常准确，因为当设置了扩容参数值，则就不是扩展为两倍了，而是原来的长度加上扩容参数值，默认情况下还是扩展为原来的两倍。</p><p><strong>2.ArrayList</strong><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/2f264dfddf928f1edeb0d47a0b24b70e339.jpg" alt=""><br>ArrayList的初始容量大小也是10，和Vector的原理是完全一样的，只是不是线程安全的，我们这里主要看下ArrayList的扩容原理：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/37cc95a9d19fc2af1b91451bbd37304ad49.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/fdafff46f017ae55c7375832c43d1dea90f.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/8c7c5c256d1bf27a06a855d0aa356c9405c.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/5d0f0aba7712478f5d094f66ce776c9c26e.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/f3663c53d5c86a069a936a04d236ff88051.jpg" alt=""><br>ArrayList也是会先判断容器的容量大小，如果容量不足，则调用扩容方法grow函数，将容量扩展原来加原来一半也就是1.5倍</p><p><strong>3.LinkedList</strong><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/63b46b4da6e09bda869ab3b23f67eab4dbc.jpg" alt=""><br>LinkedList是一个继承于AbstractSequentialList的双向链表，它也可以被当作堆栈、队列或双向队列进行操作。LinkedList实现 List 接口，能对它进行队列操作。LinkedList 实现 Deque 接口，即能将LinkedList当作双端队列使用。LinkedList 是非同步的（线程不安全的）。因为是双向链表，所以它的顺序访问会非常高效，而随机访问效率比较低。<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/d52d65a636e82213e2619217cc72f9f7a27.jpg" alt=""></p><p>下面我们先看下LinkedList的添加元素的原理：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/0f80bb356f615c7f47dbbb7199f9beda35a.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/e94aa06b0e246e3e896556d31cb2c0ea588.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/819735183bc5e1bb503681935b46f91fa28.jpg" alt=""></p><p>我们从源码可以看到其实add添加元素的操作就是在容器的最后新增一个数据节点，具体分析：先把当前最后一个节点存档到l数据节点中，然后新增一个数据节点，这里有一个判断，如果l为空那就是说改链表是空的，这样这个新增元素即是第一个也是最后一个节点；如果l不为空，将当前最后一个节点变成新增的前一个节点，然后last存放新增节点使其变成最后一个元素节点，这样一个新增的操作就完成了。<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/5e3d3b0f36975c1c958e8a59d1c024a19c0.jpg" alt=""></p><p>我们再来看看向制定位置添加数据节点的原理，看下面源码：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/c5c9310f6e64f3871acf1b5e22fab6cdfe9.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/c002765edf33f064117494b8a4d5741af07.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/df8fbacf9cfcfcfda92138431db2db62147.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/f83865b53f90f723d1954cc957a97d9dbfe.jpg" alt=""></p><p>首先是位置是否存在，添加元素的位置必须是大于等于0小于等于链表的大小；然后判断如果要添加元素的位置等于链表的大小，则该元素插入最有一个即可，否则在指点的位置前插入节点，先将该位置前的阶段存起来到pred，然后判断如果pred为空说明该链表是空的，则将新增数据节点写入第一个节点中，如果pred不为空，将原来的前一个节点的下一个节点指向新添加的节点，将新添加节点的下一个节点指向原来位置的下一个节点即可<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/4f7a3b8c0fe48d74b45d3c6f1c63c180eb5.jpg" alt=""></p><p>接下来我们看下删除第一个节点元素：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/c72e9ede7324df4e8f6c7a5778e79f95768.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/3e1bc6624df2c5d04610e7a7682b4a19707.jpg" alt=""><br>删除时是先把原来的第一个节点的下一个节点存到first中，然后将第一个节点的指向都设置为null（删除），然后将first指向next就可以了，然后判断如果next为空则last设置为空，这时候整个链表也就是空的；反之释放next内存；然后将链表大小减小一个，将此列表已被结构修改的次数减一</p><p>接下来我们看下删除最后一个节点元素：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/9959835f1cc2fdc496c3e528814b071ed55.jpg" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/75aba4991698e08bd02506e081818045503.jpg" alt=""><br>删除最后一个元素是相对简单一些，删除最后一个节点，然后释放该节点指向前一个节点的指针空间和释放前一个节点指向下一个节点的指针空间，然后将链表大小减小一个，将此列表已被结构修改的次数减一<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/75f3e011051eaad9e3c1fc356234a7a6f49.jpg" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 代码深究 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> final </tag>
+            
+            <tag> finally </tag>
+            
+            <tag> finalize </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java深究之String、StringBuffer、StringBuilder的区别</title>
       <link href="/2840479785.html"/>
       <url>/2840479785.html</url>
@@ -508,6 +539,99 @@
             <tag> finally </tag>
             
             <tag> finalize </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>LinuxDeploy上安装Docker容器</title>
+      <link href="/2338615630.html"/>
+      <url>/2338615630.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h2><p>1.使用Linux Deploy安装Debian的手机<br>2.使用SSH远程连接到debian</p><h2 id="二、操作步骤"><a href="#二、操作步骤" class="headerlink" title="二、操作步骤"></a>二、操作步骤</h2><p>1.以sudo或者root权限登陆用户</p><p>2.清除旧的仓库：<br><code>$ sudo apt-get purge lxc-docker*</code><br><code>$ sudo apt-get purge docker.io*</code></p><p>3.更新软件包信息，确保APT以HTTPS方式工作，并且CA certificates已安装：<br><code>$ sudo apt-get install apt-transport-https ca-certificates</code></p><p>4.添加新的GPG密钥<br><code>$ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609</code></p><p>5.使用文件编辑器打开/etc/apt/sources.list.d/docker.list，如果该文件不存在则创建它。<br>删除所有已存在的条目，然后添加以下内容：<br><code>deb https://apt.dockerproject.org/repo debian-jessie main</code></p><p>6.更新APT软件包索引<br><code>$ sudo apt-get update</code></p><p>7.安装docker<br><code>$ sudo apt-get install docker-engine</code> </p><h2 id="三、安装验证"><a href="#三、安装验证" class="headerlink" title="三、安装验证"></a>三、安装验证</h2><p>我们通过service docker  start启动docker引擎，感觉启动异常一下就好了，都没启动小点闪烁动画，<br>我们通过service docker  status 查看docker状态<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0409/130404_NnbU_2846946.png" alt=""><br>启动失败，我们查看日志，Docker 引擎日志 一般是交给了 Upstart(Ubuntu 14.04) 或者 systemd (CentOS 7, Ubuntu 16.04)。前者一般位于 /var/log/upstart/docker.log 下，后者一般通过 jounarlctl -u docker 来读取。不同系统的位置都不一样，网上有人罗列了下可以参考：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/30142a7fa6ba561882151f350a4be8ac0bf.jpg" alt=""><br>我们通过终端查看docker运行日志：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0409/125821_CBP3_2846946.png" alt=""><br>详细日志如下：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0409/130201_bzo9_2846946.png" alt=""><br>通过上面的日志能看到：<br>level=fatal msg=”Your Linux kernel version 3.4.0-gf4b741d-00692-gd785c3d is not supported for running docker. Please upgrade your kernel to 3.10.0 or newer.”<br>该日志提示系统的内核过低，至少需要内核版本在3.10.0或者更新的版本，然后我们升级系统的内核版本，启动docker即可。<br>docker的使用教程参考后面的docker操作文章</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 玩机分享 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> Linux </tag>
+            
+            <tag> LinuxDeploy </tag>
+            
+            <tag> Android </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>LinuxDeploy上安装Jdk和MySQL</title>
+      <link href="/1652433373.html"/>
+      <url>/1652433373.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>由于我们安装的Linux是基于arm的cpu架构的，因此jdk和mysql也必须安装arm版本的，之前折腾了半天就是安装错版本了，导致jdk一直不能正常使用。还有mysql的安装配置也比较奇葩，限于安卓对系统的限制，因此需要做一些特殊的配置才能跑起来。</p><h2 id="一、安装JDK"><a href="#一、安装JDK" class="headerlink" title="一、安装JDK"></a>一、安装JDK</h2><p>刚刚在摘要里说了，我的手机cpu架构是arm，所以我们下载JDK就要ARM版本的，翻了翻Oracle Jdk官网，惊喜的发现是有arm版本的，地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a> , 然后上传到手机的Linux容器中解压安装配置环境变量即可，可参考之前的博文：《<a href="https://my.oschina.net/zss1993/blog/1591353" target="_blank" rel="noopener">Linux开发环境搭建之Java开发环境JDK安装配置</a> 》<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0406/174437_G6qS_2846946.png" alt=""><br>安装成功后验证：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0406/175044_TzQO_2846946.png" alt=""></p><h2 id="二、安装MySql"><a href="#二、安装MySql" class="headerlink" title="二、安装MySql"></a>二、安装MySql</h2><p>由于mysql没有arm版本的，在官网找不到，或者需要自己手动移植编译arm版本的，我们这里直接使用install在其源中安装即可在（这里以mariadb为例，MYSQL一样）：<br>centos:    yum install mariadb-server/mysql-server<br>debian:   apt-get install mariadb-server/mysql-server</p><p>重新安装：<br>sudo apt-get remove –purge mysql-*<br>sudo apt-get install mysql-server<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0406/094200_7a1Q_2846946.png" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0406/094253_Ykby_2846946.png" alt=""><br>进过以上安装步骤，mysql就成功安装了，接下里开始设置：<br>首先使用service mysql start 启动mysql服务，然后在终端执行usermod -aG aid_inet mysql<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0406/183417_8ysQ_2846946.png" alt=""><br>然后开始设置初始密码等，执行mysql_secure_installation<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0406/180917_cOV4_2846946.png" alt=""><br>移除匿名用户，选择Y；不允许ROOT远程连接，选择N；到最后完成即可。<br>注意：由于安卓的限制，usermod -aG aid_inet mysql这一步特别重要<br>这时候安装完成了，但是我们使用远程工具navicat连接提示：<br>2003 - Can’t connect to MySQL server on ‘192.168.100.100’ (10038)<br>这是因为MYSQL默认绑定了 本机127.0.0.1地址，外网无法访问，于是我们更改配置文件：vi /etc/mysql/mariadb.conf.d/50-server.cnf<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0406/184116_KedW_2846946.png" alt=""><br>此时我们使用navicat连接则正常：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0406/184320_4VXQ_2846946.png" alt=""></p><h2 id="三、问题记录"><a href="#三、问题记录" class="headerlink" title="三、问题记录"></a>三、问题记录</h2><p>1.启动MYSQL总是提示：<br>ERROR 1045 (28000): Access denied for user ‘root’@’localhost’ (using password: NO)<br>解决办法：<br>mysql -p    #登陆mysql<br>Enter password:<br>mysql&gt; set password for ‘root’@’localhost’ =password(‘’);<br>mysql&gt; flush privileges;<br>mysql&gt; exit;</p><p>2.提示Access denied for user ‘root’@’localhost’<br>解决办法：<br>mysql -p    #登陆mysql<br>Enter password:<br>mysql&gt; grant all privileges on <em>.</em> to ‘root’@’localhost’ identified by ‘123456’ with grant option;<br>mysql&gt; flush privileges;<br>mysql&gt; exit;</p><p>3.安全模式启动mysql<br>mysqld_safe –skip-grant-tables &amp;</p><p>4.启动服务提示密码错误<br>Access denied for user ‘root’@’localhost’ (using password: YES)<br>在mysql的配置文件/etc/mysql/debian.cnf中改动,配置password部分为自己设置的密码即可<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://oscimg.oschina.net/oscnet/8aa4865e1e6092fa45c7c60b5d7173b99db.jpg" alt=""></p><h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>在deploy的Linux系统中安装jdk和mysql并不像平常在Linux系统中安装一样，因为平台架构不一样，存在许多坑，比如安卓的网络策略限制，必须usermod -aG aid_inet mysql等，不去踩坑就永远走不出坑，今天的实践就这些啦，后面会继续在Linux Deploy上搞事情。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 玩机分享 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+            <tag> Linux </tag>
+            
+            <tag> LinuxDeploy </tag>
+            
+            <tag> Android </tag>
+            
+            <tag> OracleJdk </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>LinuxDeploy安装配置使用教程</title>
+      <link href="/2692598958.html"/>
+      <url>/2692598958.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>作为一个程序猿和一个业余的玩机爱好者，自然喜欢折腾各种技术和设备，前几天无意间注意到一个可以在安卓机器上使用chroot容器技术运行arm或者x86的Linux系统（目前有些手机可能支持x64了），本文就来亲自体验下，还有后续会使用该技术搭建个人服务器、部署个人博客系统等</p><h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>该技术的验证是在安卓系统上进行的，因此大家先要有一台安卓手机或者安卓平板。该技术的原理就是在安卓机上搁置一个chroot容器，来运行linux系统，那为啥别的系统不行呢，因为安卓的系统内核也是Linux的。我自使用小米4（系统安卓6.0）先后试验了debian、Ubuntu、CentOS都是成功的，本文将以CentOS为例进行验证。</p><h2 id="二、准备工作"><a href="#二、准备工作" class="headerlink" title="二、准备工作"></a>二、准备工作</h2><p>1.一台安卓设备（手机过着平板）<br>设备硬件要求：建议RAM在1G及以上，手机ROM空闲容量4G左右<br>设备软件要求：建议安卓版本4.0以上，系统必须是拥有ROOT系统权限的</p><p>2.Busy Box安卓软件<br>软件简介：BusyBox 是一个集成了三百多个最常用Linux命令和工具的软件。BusyBox 包含了一些简单的工具，例如ls、cat和echo等等，还包含了一些更大、更复杂的工具，例grep、find、mount以及telnet。有些人将 BusyBox 称为 Linux 工具里的瑞士军刀。简单的说BusyBox就好像是个大工具箱，它集成压缩了 Linux 的许多工具和命令，也包含了 Android 系统的自带的shell。摘自：百度百科<br>在本实验中Busy Box作为Linux Deploy最主要的依赖软件软件地址：<a href="https://github.com/meefik/busybox/releases" target="_blank" rel="noopener">https://github.com/meefik/busybox/releases</a>    （本文使用最新版）</p><p>3.Linux Deploy安卓软件<br>软件简介：安卓平台虚拟机（chroot运行linux的容器）<br>软件地址：<a href="https://github.com/meefik/linuxdeploy/releases" target="_blank" rel="noopener">https://github.com/meefik/linuxdeploy/releases</a>  （本文使用最新版）</p><h2 id="三、安装工作"><a href="#三、安装工作" class="headerlink" title="三、安装工作"></a>三、安装工作</h2><p>注意：如果安卓设备没有拥有ROOT系统权限，得先ROOT设备（自行百度）</p><p>1.安装Busy Box<br>将下载的Busy Box软件安装在安卓设备上，然后打开设备点击右上角三个点然后点击Setting进行设置<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/164020_xhgB_2846946.png" alt=""><br>这里可以设置肤色、字体大小、屏幕滚动行数等<br>注意：安装路径不要改动，后面要用的！（改了也行，不过的记住，后面找不到就尴尬了）<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/164742_96Fw_2846946.png" alt=""><br>剩下的设置就按这样来就行，日志文件可以打开也可以关闭，建议关闭，调试模式也关闭。设置完成后返回到主界面，然后点击安装按钮，等待安装完成在界面中输出## END，然后点击右上角三个点然后点信息按钮可以看到输出的系统信息：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/165517_bEfX_2846946.png" alt=""></p><p>2.安装Linux Deploy<br>安装完成后打开Linux Deploy可以看到主界面如下：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/165810_0lzR_2846946.png" alt=""><br>然后我们点击左上角三个横杠然后点击设置：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/170008_Ri1c_2846946.png" alt=""><br>这里是一些显示相关的设置，前面三个中的锁定wifi一定要打钩、保持CPU唤醒也要打钩、屏幕常亮一定关闭避免耗电<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/170240_A1ng_2846946.png" alt=""><br>下面这些看自己的需求设置、开机启动建议打开，防止手机某些问题重启后，容易没打开这样服务就断开了<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/170434_R7aU_2846946.png" alt=""><br>这里最重要的就是PATH变量，就是前面说的不要改的，填进去就好了（改了就填写改了的路径）设置的部分就先到这，下面是最重要的部分，进行系统安装的设置工作：</p><p>&lt;1&gt;在主界面点击左上角的三个横杠然后点击点击配置文件、然后新建文件的名称，可以随意定义，本文是安装CentOS系统就用其命名了<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/170939_azc1_2846946.png" alt=""></p><p>&lt;2&gt;点击手机右下角的设置图标，设置系统相关信息<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/171108_l6zS_2846946.png" alt=""><br>这里的容器选择chroot（proot很不稳定）发行版本文选择CentOS，大家可以选择其他的发行版本安装架构这里一定要选对，不然安装会出错，或者安装完成后不能正常使用，这里一定要知道自己手机cpu的架构，我的小米4是晓龙801处理器，理论上是可以用x86的，但是我安装总是出错，所以选择向下兼容的armhfp，这架构大部分手机都是支持的；源地址默认或者可以切换成国内源，国内源安装的速度比较快，阿里的源地址是<a href="http://mirrors.aliyun.com/centos/" target="_blank" rel="noopener">http://mirrors.aliyun.com/centos/</a> ，还有很多国内的比如网易等大家自己百度；安装类型选择镜像安装，安装地址可以默认，这里是改过的，/linux是指手机sdcard根目录的linux文件夹下的地址；<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/172146_bsTw_2846946.png" alt=""><br>设置镜像大小2000mb往上（如果是用来做服务器，建议使用分区安装，这样可以使用整个手机所有的空间），文件系统建议选择ext4，其他的自定义信息大家自己填写，用户名和密码是待会进入系统需要的；DNS自动就好，或者改成114.114.114.114 或者8.8.8.8 或者1.1.1.1等都行；<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/172424_EfK1_2846946.png" alt=""><br>这里的设置也很重要，一定要勾启用SSH，不然待会登陆不到系统，挂载点也勾选并设置，本文设置将sdcard整个挂载到Linux系统的/mnt/sdcard下，如下所示：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/173048_ghVz_2846946.png" alt=""><br>下面是一些桌面化的设置，本文是没有安装桌面的，因此没勾选某些项，大家需要桌面版可以自行勾选<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/173225_enkQ_2846946.png" alt=""></p><p>&lt;3&gt;开始安装系统<br>设置完成返回主界面点击右上角三个点中的安装选项，开始系统的安装操作，然后等待安装，下面是系统安装的截图：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/173507_uB6p_2846946.png" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/173521_s3rp_2846946.png" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/173541_fNg4_2846946.png" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/173556_CeBe_2846946.png" alt=""><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/173626_QUDW_2846946.png" alt=""><br>看到如下输出&lt;&lt;&lt;deploy 时说明安装完成<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/173654_bzEb_2846946.png" alt=""></p><p>&lt;4&gt;启动linux系统<br>在启动系统之前先点击一次停止按钮：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/173850_bV9L_2846946.png" alt=""><br>看到如上停止信息时，再点击确定系统按钮：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/173946_p7FM_2846946.png" alt=""><br>看到如上启动信息，说明系统么启动成功</p><h2 id="四、安装配置验证"><a href="#四、安装配置验证" class="headerlink" title="四、安装配置验证"></a>四、安装配置验证</h2><p>在上面安装启动工作完成后，我们来验证安装是否成功，用电脑打开系统终端，开始连接测试：<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0405/174325_eew7_2846946.png" alt=""><br>我们使用root用户登陆正常，和正常的Linux系统是一样的，不过因为是运行在chroot下，有些命令是不支持的，具体请百度chroot了解<br>注意：本文使用的是Linux系统，可以直接在终端使用SSH命令测试连接，大家的要是window可以使用xshell或者putty等软件连接测试，若果没有电脑可以使用手机安装程序员工具这个软件或者ConnectBox连接验证</p><h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>经过前面的实验，已经成功的在安卓设备上安装了Linux-CentOS发行版，而且是正常的连接使用，后面我们实验在改系统上架设tomcat等服务，并且使用花生壳或者花生棒硬件映射服务到公网作为个人云主机使用。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 玩机分享 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> LinuxDeploy </tag>
+            
+            <tag> Android </tag>
             
         </tags>
       
@@ -676,8 +800,8 @@
     
     <entry>
       <title>Linux系统开发环境搭建之MySQL安装配置</title>
-      <link href="/707986449.html"/>
-      <url>/707986449.html</url>
+      <link href="/7079864490.html"/>
+      <url>/7079864490.html</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>本文主要实践在Linux上安装和配置MySQL关系型数据库，完整的实践MySQL的下载、安装、配置、使用的过程，为后面某些文中使用做基础</p><h2 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h2><p>1.CentOS7发行版的Linux系统(最小化安装)</p><p>2.MySQL官方编译的安装包 mysql-5.7.20-linux-glibc2.12-x86_64<br>下载地址：<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/101839_NThT_2846946.png" alt=""></p><h2 id="二、安装准备"><a href="#二、安装准备" class="headerlink" title="二、安装准备"></a>二、安装准备</h2><p><strong>1.打开CentOS7发行版Linux系统</strong><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/102319_yWg5_2846946.png" alt=""></p><p><strong>2.添加mysql组和mysql用户</strong><br>执行命令groupadd mysql 添加mysql组<br>执行命令useradd -r -g mysql mysql 添加mysql用户<br>参数说明：<br><strong>useradd -r表示mysql用户是系统用户，不可用于登录系统</strong><br><strong>useradd -g表示把mysql用户添加到mysql用户组中</strong><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/102944_94Hq_2846946.png" alt=""><br>查看新添加的组和用户 ：groups mysql<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/103331_wiNR_2846946.png" alt=""></p><p>3.使用FTP上传mysql安装包到我们创建的安装目录<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/104024_aej9_2846946.png" alt=""><br>上传mysql安装包到linux系统<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/112009_7iIK_2846946.png" alt=""></p><h2 id="三、安装过程"><a href="#三、安装过程" class="headerlink" title="三、安装过程"></a>三、安装过程</h2><p><strong>1.解压安装包到安装目录</strong><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/112438_T8dH_2846946.png" alt=""></p><p><strong>2.更改目录名为mysql</strong><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/112826_A4cV_2846946.png" alt=""></p><p><strong>3.修改目录权限</strong><br>进入mysql目录，修改目录拥有者为mysql用户：执行命令 chown -R mysql:mysql ./<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/113136_653Q_2846946.png" alt=""></p><p><strong>4.安装mysql数据库</strong><br>进入mysql目录下的bin目录中，执行./mysql_install_db –user=mysql，此时系统反馈错误<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/134136_64YK_2846946.png" alt=""><br>错误提示：需要指定data目录，因为mysql服务进程mysqld运行时都会访问data目录，所以必须由启动mysqld进程的用户，就是我们之前设置的mysql用户，执行这个脚本或者用root 执行，但是加上参数–user=mysql上文还有警告信息，说mysql_install_db 命令已经是弃用的，建议切换到mysqld –initialize命令<br>注意：mysql5.7和之前版本不同，很多资料上都是这个命令：./scripts/mysql_install_db –user=mysql，而mysql5.7的mysql_install_db命令是在bin目录下的并且建议 用 mysqld –initialize命令初始化<br>我们本文的版本是5.7.20，我们需要进入bin目录下执行初始化命令：./mysqld –initialize –user=mysql –basedir=/usr/local/deve/mysql –datadir=/usr/local/deve/mysql/data</p><p>参数解释：<br>–user  启动mysql的用户<br>–basedir  mysql安装目录<br>–datadir  mysql数据目录<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/140445_Y58y_2846946.png" alt=""><br>[Note] A temporary password is generated for root<a href="https://my.oschina.net/u/570656" target="_blank" rel="noopener">@localhost</a>: ae3Zk1&lt;1b=iu<br>注意：最后一行系统给出了root的默认密码，过会我们会修改</p><p><strong>5.修改目录权限</strong><br>将mysql目录下除了data目录的所有文件，改回root用户所有，mysql用户只需作为mysql/data/目录下所有文件的所有者<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/141448_Sq2U_2846946.png" alt=""></p><p><strong>6.修改配置文件</strong><br>刚刚执行初始化命令，已经在系统的etc目录下生成了my.cnf配置文件<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/143207_jmVv_2846946.png" alt=""></p><p>修改配置文件如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[client]  </span><br><span class="line">socket=/usr/<span class="built_in">local</span>/deve/mysql/tmp/mysql.sock</span><br><span class="line"></span><br><span class="line">[mysqld]  </span><br><span class="line">basedir=/usr/<span class="built_in">local</span>/deve/mysql  </span><br><span class="line">socket=/usr/<span class="built_in">local</span>/deve/imysql/tmp/mysql.sock  </span><br><span class="line">symbolic-links=0</span><br><span class="line"></span><br><span class="line">[mysqld_safe]  </span><br><span class="line"><span class="built_in">log</span>-error=/usr/<span class="built_in">local</span>/deve/mysql/logs/mysql.log  </span><br><span class="line">pid-file=/usr/<span class="built_in">local</span>/deve/mysql/logs/mysql.pid                     </span><br><span class="line"></span><br><span class="line">!includedir /etc/my.cnf.d</span><br></pre></td></tr></table></figure><p><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/154535_2kYA_2846946.png" alt=""><br>注意:tmp目录不存在就创建，否则会出错， 创建后要赋予mysql权限，chown -R mysql:mysql tmp 如果mysql.sock指定到/tmp以外的目录，需要在my.cnf中添加[client]并且指定socket位置，否则登录mysql时会报错：ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)，默认是会找tmp目录下的sock文件</p><p><strong>7.将mysqld服务加入开机自启动项</strong><br>修改mysql.server中basedir的相关路径，改为自定义的路径<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/150020_rrJt_2846946.png" alt=""><br>将support-files/mysql.server 拷贝为/etc/init.d/mysql并设置运行权限，这样就可以使用service mysql命令启动/停止服务，执行cp mysql.server /etc/init.d/mysql  然后执行chmod +x /etc/init.d/mysql 把mysql注册为开机启动的服务chkconfig –add mysql  验证chkconfig –list mysql<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/150511_tCKb_2846946.png" alt=""></p><p><strong>8.mysql服务的开启和关闭</strong><br>&lt;1&gt;mysql服务启动有以下三种方式<br>#/etc/init.d/mysql start<br>serivce mysql start<br>bin/mysqld_safe&amp;  </p><p>&lt;2&gt;mysql服务停止有以下三种方式<br>#/etc/init.d/mysql stop<br>service mysql stop<br>bin/mysqladmin -uroot -p  (注意此时的root是指mysql的root用户)<br>注：脚本末尾加&amp;表示设置此进程为后台进程，区别就是在控制台输入bg，即可将当前进程转入后台</p><p><strong>9.配置环境变量</strong><br>vi /etc/profile<br>写入mysql的环境变量信息<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/151902_qCdI_2846946.png" alt=""><br>退出保存后，执行source /etc/profile 使其生效，使用echo $PATH查看配置<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/152123_bxMd_2846946.png" alt=""><br>注意：不添加环境变量或者建立软链接，运行mysql命令会出现   -bash: mysql:command not found</p><h2 id="四、验证安装"><a href="#四、验证安装" class="headerlink" title="四、验证安装"></a>四、验证安装</h2><p><strong>1.启动mysql服务</strong><br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/153156_Jbz2_2846946.png" alt=""></p><p><strong>2.连接mysql</strong><br>mysql -uroot -p  ae3Zk1&lt;1b=iu   （生成的密码）<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/154744_iMTw_2846946.png" alt=""></p><p><strong>3.修改默认密码</strong><br>修改mysql的密码有很多中方法<br>&lt;1&gt;.使用客户端连接<br>直接执行  SET PASSWORD FOR ‘root’@’localhost’ = PASSWORD(‘newpass’);<br>localhost是mysql的主机ip，newpass是需要设置的新密码</p><p>&lt;2&gt;用SET PASSWORD命令<br>使用 mysql -uroot -p 连接成功后<br>SET PASSWORD FOR ‘root’@’localhost’ = PASSWORD(‘newpass’);</p><p>&lt;3&gt;用mysqladmin<br>mysqladmin -u root password “newpass”<br>如果root已经设置过密码，或者初始化生成了默认密码，采用如下方法<br>mysqladmin -u root password oldpass “newpass”</p><p>&lt;4&gt; 用UPDATE直接编辑user表<br>使用 mysql -uroot -p 连接成功后<br>mysql&gt; use mysql;<br>mysql&gt; UPDATE user SET Password = PASSWORD(‘newpass’) WHERE user = ‘root’;<br>mysql&gt; FLUSH PRIVILEGES;</p><p>&lt;5&gt;忘记root密码的时候<br>mysqld_safe –skip-grant-tables&amp;<br>mysql -u root mysql<br>mysql&gt; UPDATE user SET password=PASSWORD(“new password”) WHERE user=’root’;<br>mysql&gt; FLUSH PRIVILEGES;<br>本文直接在命令行中修改，采用上面第&lt;2&gt;中方式<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/155354_tXne_2846946.png" alt=""></p><p><strong>4.远程连接mysql</strong><br>我们使用另一台主机的navicat进行远程连接<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/160938_K1ht_2846946.png" alt=""><br>我们发现mysql服务不允许远程连接访问，我们需要授权远程访问，有以下两种方式：</p><p>&lt;1&gt;通过改表实现（简单）<br>使用 mysql -uroot -p 连接成功后<br>mysql&gt;use mysql;<br>mysql&gt;update user set host = ‘%’ where user = ‘root’;<br>mysql&gt;select host, user from user;<br>本文使用这种方式<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/161917_8pxz_2846946.png" alt=""></p><p>&lt;2&gt;通过授权<br>首先在安装mysql的机器上运行：<strong>mysql -h localhost -u root</strong> ,然后在命令行执行<br>mysql&gt;GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’WITH GRANT OPTION<br>如果你想允许用户test从ip为192.168.1.100的主机连接到mysql服务器，并使用123456作为密码<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘test’@’192.168.1.100’ IDENTIFIED BY ‘123456’ WITH GRANT OPTION;<br>然后mysql&gt;FLUSH PRIVILEGES 使修改生效<br>最后mysql&gt;EXIT退出即可<br>例如授权任何ip使用root 以123456登陆：<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘123456’ WITH GRANT OPTION;<br>修改完成后，使用service mysql restart 重启服务，我们再次远程连接MYSQL服务，已经可以正常连接<br><img src= "https://cdn.maxbill.cn/blog/img/loading.gif" data-src="https://static.oschina.net/uploads/space/2018/0102/162819_fDNd_2846946.png" alt=""><br>注意：<strong>跳过密码验证</strong>，执行命令行：# /usr/bin/mysqld_safe –skip-grant-tables</p><h2 id="五、文末总结"><a href="#五、文末总结" class="headerlink" title="五、文末总结"></a>五、文末总结</h2><p>经过以上的步骤，mysql就已经正常安装可以使用了，在本文的安装配置中也遇到不少问题，经过询问别的大佬和查阅资料都完美解决，尤其是最新版的5.7.20在安装配置中和旧版本存在差异，走了很多弯路，希望本文能帮助到其他同学，如有错误也请留言提出，谢谢。</p>]]></content>
       
