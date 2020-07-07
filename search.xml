@@ -472,11 +472,13 @@
             
             <tag> Java </tag>
             
-            <tag> final </tag>
+            <tag> Vector </tag>
             
-            <tag> finally </tag>
+            <tag> ArrayList </tag>
             
-            <tag> finalize </tag>
+            <tag> LinkedList </tag>
+            
+            <tag> 容器 </tag>
             
         </tags>
       
