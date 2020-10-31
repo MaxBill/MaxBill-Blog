@@ -373,11 +373,11 @@
             
             <tag> Deepin </tag>
             
-            <tag> Linux </tag>
-            
             <tag> Redis </tag>
             
             <tag> RedisPlus </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
@@ -1067,9 +1067,9 @@
             
             <tag> MySQL </tag>
             
-            <tag> 数据库 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 数据库 </tag>
             
             <tag> CentOS </tag>
             

@@ -366,11 +366,11 @@
     
       <category term="Deepin" scheme="https://www.maxbill.cn/marks/Deepin/"/>
     
-      <category term="Linux" scheme="https://www.maxbill.cn/marks/Linux/"/>
-    
       <category term="Redis" scheme="https://www.maxbill.cn/marks/Redis/"/>
     
       <category term="RedisPlus" scheme="https://www.maxbill.cn/marks/RedisPlus/"/>
+    
+      <category term="Linux" scheme="https://www.maxbill.cn/marks/Linux/"/>
     
   </entry>
   
@@ -1016,9 +1016,9 @@
     
       <category term="MySQL" scheme="https://www.maxbill.cn/marks/MySQL/"/>
     
-      <category term="数据库" scheme="https://www.maxbill.cn/marks/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
       <category term="Linux" scheme="https://www.maxbill.cn/marks/Linux/"/>
+    
+      <category term="数据库" scheme="https://www.maxbill.cn/marks/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
       <category term="CentOS" scheme="https://www.maxbill.cn/marks/CentOS/"/>
     
